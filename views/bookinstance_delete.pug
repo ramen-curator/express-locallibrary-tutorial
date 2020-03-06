@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 #{title}: #{bookinstance.book.title}
+  p #{bookinstance.imprint}
+
+  p 你真的想删除此藏书副本吗？
+    
+  form(method='POST' action='')
+    div.form-group
+      input#bookinstanceid.form-control(type='hidden',name='bookinstanceid', required='true', value=bookinstance._id )
+
+    button.btn.btn-primary(type='submit') 删除

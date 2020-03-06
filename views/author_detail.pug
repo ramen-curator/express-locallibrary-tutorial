@@ -1,0 +1,27 @@
+extends layout
+
+block content
+
+  h1 作者： #{author.name}
+  p #{author.the_date_of_birth} - #{author.the_date_of_death}
+  if author.date_of_birth && author.date_of_death
+    p 享年： #{author.lifespan}岁
+  
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4 著书
+    
+    dl
+    each book in author_books
+      dt 
+        a(href=book.url) #{book.title}
+      dd #{book.summary}
+
+    else
+      p 这里没有这个作者写的书。
+  
+  hr
+  p
+    a(href=author.url+'/delete') 删除作者
+  p
+    a(href=author.url+'/update') 更新作者

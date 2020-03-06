@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  h1 #{title}: #{book.title}
+  p 作者：#{book.author.name}
+  p 书号：#{book.isbn}
+  if book.genre
+    p 类型：&nbsp;
+      each val, index in book.genre
+        a(href=val.url) #{val.name}
+        if index < book.genre.length - 1
+         |,
+  
+  if book_bookinstances.length
+  
+    p #[strong 尝试删除此藏书之前，请删除以下藏书副本。]
+  
+    div(style='margin-left:20px;margin-top:20px')
+
+      h4 藏书副本
+    
+      dl
+      each bookinstance in book_bookinstances
+        dt 
+          a(href=bookinstance.url) #{bookinstance.book.title}
+        dd 出版社：#{bookinstance.imprint}
+        dd 藏书状态：#{bookinstance.status}
+        dd 应还日期：#{bookinstance.due_back_formatted}
+
+
+  else
+    p 你真的想删除此藏书吗？
+    
+    form(method='POST' action='')
+      div.form-group
+        input#bookid.form-control(type='hidden',name='bookid', required='true', value=book._id )
+
+      button.btn.btn-primary(type='submit') 删除

@@ -1,0 +1,24 @@
+extends layout
+
+block content
+
+  h1 类型: #{genre.name}
+  
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4 藏书
+    
+    dl
+    each book in genre_books
+      dt 
+        a(href=book.url) #{book.title}
+      dd #{book.summary}
+
+    else
+      p 没有这个类型的藏书
+
+  hr
+  p
+    a(href=genre.url+'/delete') 删除藏书类型
+  p
+    a(href=genre.url+'/update') 更新藏书类型

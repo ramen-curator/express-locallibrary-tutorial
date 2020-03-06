@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+  
+  ul
+  each author in author_list
+    li 
+      a(href=author.url) #{author.name} 
+      | (#{author.the_date_of_birth} - #{author.the_date_of_death})
+      if author.the_date_of_birth!='不详'&&author.the_date_of_death!='不详'
+        span  享年: #{author.lifespan}岁
+      
+
+  else
+    li 没有作者。

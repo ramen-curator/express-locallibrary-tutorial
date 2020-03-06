@@ -1,0 +1,39 @@
+doctype html
+html(lang='zh-cn')
+  head
+    title= title
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    script(src='./public/javascripts/jq.js')
+    script(src='./public/javascripts/bt.js')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    div(class='container-fluid')
+      div(class='row')
+        div(class='col-sm-2')
+          block sidebar
+            ul(class='sidebar-nav')
+              li 
+                a(href='/catalog') 首页
+              li 
+                a(href='/catalog/books') 所有藏书
+              li 
+                a(href='/catalog/authors') 所有作者
+              li 
+                a(href='/catalog/genres') 所有类型
+              li 
+                a(href='/catalog/bookinstances') 所有藏书副本
+              li 
+                hr
+              li 
+                a(href='/catalog/author/create') 创建新作者
+              li 
+                a(href='/catalog/genre/create') 创建新类型
+              li 
+                a(href='/catalog/book/create') 创建新藏书
+              li 
+                a(href='/catalog/bookinstance/create') 创建新藏书副本
+                
+        div(class='col-sm-10')
+          block content

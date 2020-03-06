@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1= title
+
+  ul
+  each val in bookinstance_list
+    li 
+      a(href=val.url) #{val.book.title} : #{val.imprint} - 
+      if val.status=='可供借阅'
+        span.text-success #{val.status}
+      else if val.status=='馆藏维护'
+        span.text-danger #{val.status}
+      else
+        span.text-warning #{val.status} 
+      if val.status!='可供借阅'
+        span  (归还日期: #{val.due_back_formatted} )
+
+  else
+    li 图书馆内没有藏书副本。

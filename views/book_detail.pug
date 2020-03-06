@@ -1,0 +1,42 @@
+extends layout
+
+block content
+  h1 #{title}：#{book.title}
+  
+  p #[strong 作者：] 
+    a(href=book.author.url) #{book.author.name}
+  p #[strong 摘要：] #{book.summary}
+  p #[strong 书号：] #{book.isbn}
+  p #[strong 类型：]&nbsp;
+    each val, index in book.genre
+      a(href=val.url) #{val.name}
+      if index < book.genre.length - 1
+        |, 
+
+    
+  
+  div(style='margin-left:20px;margin-top:20px')
+    h4 藏书副本
+    
+    each val in book_instances
+      hr
+      if val.status=='可供借阅'
+        p.text-success #{val.status}
+      else if val.status=='馆藏维护'
+        p.text-danger #{val.status}
+      else
+        p.text-warning #{val.status} 
+      p #[strong 出版社：] #{val.imprint}
+      if val.status!='可供借阅'
+        p #[strong 归还日期：] #{val.due_back_formatted}
+      p #[strong ID：]&nbsp;
+        a(href=val.url) #{val._id}
+ 
+    else
+      p 图书馆里没有这本书的副本。
+  
+  hr
+  p
+    a(href=book.url+'/delete') 删除藏书
+  p
+    a(href=book.url+'/update') 更新藏书
