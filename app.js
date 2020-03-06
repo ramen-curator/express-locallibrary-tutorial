@@ -12,10 +12,10 @@ const catalogRouter = require('./routes/catalog');
 const app = express();
 
 // connect mongoDB
-const mongoDB = 'mongodb://127.0.0.1:27017';
+const mongoDB = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017';
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
-const db = mongoose.connection;
+let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB 连接错误：'));
 //那我前面的数据库不要了怎么办？
 
