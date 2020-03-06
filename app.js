@@ -12,7 +12,7 @@ const catalogRouter = require('./routes/catalog');
 const app = express();
 
 // connect mongoDB
-const mongoDB = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017';
+const mongoDB = process.env.MONGODB_URI || 'mongodb://admin:a12345@ds129939.mlab.com:29939/local_library_2';
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 let db = mongoose.connection;
